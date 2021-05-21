@@ -21,12 +21,12 @@ public class Usuario {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "Id")
+	@Column(name = "UsuarioID")
 	private Long id;
 
 	@NotBlank
 	@Email
-	@Column(name = "Login")
+	@Column(name = "Login", unique = true)
 	private String login;
 	
 	@Size(min = 6)
@@ -38,23 +38,13 @@ public class Usuario {
 	@PastOrPresent
 	private LocalDateTime dataCadastro;
 
+	@Deprecated public Usuario() {}
+	
 	public Usuario(@NotBlank @Email String login, @Size(min = 6, max = 59) String senha) {
 		Assert.isTrue(senha.length() != 60, "A senha nao pode vir em formato Bcrypt");
 		Assert.notNull(login, "O login nao pode vir nulo");
 		
 		this.login = login;
 		this.senha = new BCryptPasswordEncoder().encode(senha);
-	}
-
-	public String getLogin() {
-		return login;
-	}
-
-	public String getSenha() {
-		return senha;
-	}
-
-	public LocalDateTime getDataCadastro() {
-		return dataCadastro;
 	}
 }

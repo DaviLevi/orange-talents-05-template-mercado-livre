@@ -34,6 +34,7 @@ public class CadastroCaracteristicaRequest {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((descricao == null) ? 0 : descricao.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		return result;
 	}
@@ -47,6 +48,11 @@ public class CadastroCaracteristicaRequest {
 		if (getClass() != obj.getClass())
 			return false;
 		CadastroCaracteristicaRequest other = (CadastroCaracteristicaRequest) obj;
+		if (descricao == null) {
+			if (other.descricao != null)
+				return false;
+		} else if (!descricao.equals(other.descricao))
+			return false;
 		if (nome == null) {
 			if (other.nome != null)
 				return false;

@@ -84,5 +84,19 @@ public class CadastroProdutoRequest {
 		
 		return false;
 	}
+
+	public Set<String> buscaCaracteristicasIguais() {
+		HashSet<String> nomesIguais = new HashSet<>();
+		HashSet<String> resultados = new HashSet<>();
+
+		for (CadastroCaracteristicaRequest caracteristica : caracteristicas) {
+			String nome = caracteristica.getNome();
+
+			if (!nomesIguais.add(nome)) {
+				resultados.add(nome);
+			}
+		}
+		return resultados;
+	}
 	
 }

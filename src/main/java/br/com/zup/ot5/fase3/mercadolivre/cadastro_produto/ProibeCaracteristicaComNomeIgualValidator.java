@@ -1,5 +1,7 @@
 package br.com.zup.ot5.fase3.mercadolivre.cadastro_produto;
 
+import java.util.Set;
+
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
@@ -20,7 +22,10 @@ public class ProibeCaracteristicaComNomeIgualValidator implements Validator{
 		
 		CadastroProdutoRequest requisicao = (CadastroProdutoRequest) target;
 		
-		if(requisicao.temCaracteristicasComNomesIguais())
-			errors.rejectValue("caracteristicas", null, "As caracteristicas nao devem conter nomes duplicados");
+		Set<String> nomesIguais = requisicao.buscaCaracteristicasIguais();
+		
+		if(!nomesIguais.isEmpty()) {
+			errors.rejectValue("caracteristicas", null, "As caracteristicas nao devem conter nomes duplicados. Exemplo : " + nomesIguais);
+		}
 	}
 }

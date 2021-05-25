@@ -108,4 +108,8 @@ public class Produto {
 		return this.usuario.getId() != usuario.getId();
 	}
 	
+	public String getEmailVendedor() {
+		return this.usuario.getUsername();
+	}
+	
 }

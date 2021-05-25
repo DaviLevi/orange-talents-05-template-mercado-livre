@@ -1,6 +1,5 @@
 package br.com.zup.ot5.fase3.mercadolivre.model;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -8,30 +7,43 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.URL;
 
 @Entity
-public class Caracteristica {
+public class FotoProduto {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "CaracteristicaID")
 	private Long id;
 	
-	@Column(name = "Nome")
-	private String nome;
+	@URL
+	@NotBlank
+	private String url;
 	
-	@Column(name = "Descricao")
-	private String descricao;
+	@NotBlank
+	private String nome;
 	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "ProdutoID", nullable = false)
+	@NotNull
 	private Produto produto;
 
-	@Deprecated public Caracteristica() {}
+	@Deprecated public FotoProduto() {}
 	
-	public Caracteristica(String nome, String descricao, Produto produto) {
-		this.nome = nome;
-		this.descricao = descricao;
+	public FotoProduto(@URL @NotBlank String url, @NotBlank String nome, @NotNull Produto produto) {
+		this.url = url;
 		this.produto = produto;
+		this.nome = nome;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public String getNome() {
+		return nome;
 	}
 }

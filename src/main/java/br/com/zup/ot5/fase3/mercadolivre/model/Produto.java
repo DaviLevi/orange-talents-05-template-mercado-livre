@@ -69,11 +69,16 @@ public class Produto {
 	@CreationTimestamp
 	private LocalDateTime dataCadastro;
 	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "produto")
+	private Set<FotoProduto> fotosProduto = new HashSet<>();
+	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "UsuarioID", nullable = false)
 	@NotNull
 	private Usuario usuario;
 
+	@Deprecated public Produto() {}
+	
 	public Produto(@NotBlank String nome, @NotBlank @Size(max = 1000) String descricao,
 			@Positive @NotNull BigDecimal valor, @PositiveOrZero @NotNull Integer quantidadeDisponivel,
 			@Size(min = 3) @NotNull @Valid List<CadastroCaracteristicaRequest> caracteristicas, Categoria categoria, @NotNull Usuario usuarioLogado) {
@@ -90,6 +95,17 @@ public class Produto {
 		this.usuario = usuarioLogado;
 		
 		Assert.state(this.caracteristicas.size() >= 3, "Estamos tentando persistir um produto com menos de 3 caracteristicas!!");
+	}
+
+	public void adicionaFotosProduto(Set<FotoProduto> fotosProduto) {
+		
+		Assert.state(fotosProduto.size() > 0, "Está sendo adicionada uma lista de foto vazia");
+		
+		this.fotosProduto = fotosProduto;
+	}
+	
+	public boolean naoPertenceAoUsuario(Usuario usuario) {
+		return this.usuario.getId() != usuario.getId();
 	}
 	
 }

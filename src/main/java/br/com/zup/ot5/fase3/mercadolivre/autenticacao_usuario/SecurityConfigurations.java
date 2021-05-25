@@ -17,7 +17,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 	
-	
 	@Autowired
 	private AutenticacaoService autenticacaoService;
 	
@@ -33,7 +32,6 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 		return super.authenticationManager();
 	}
 	
-	
 	//Configuracoes de estrategia de autenticacao
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -47,6 +45,7 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 			.authorizeRequests()
 				.antMatchers(HttpMethod.POST, "/auth").permitAll()
 				.antMatchers(HttpMethod.POST, "/usuarios").permitAll()
+				.antMatchers(HttpMethod.GET, "/produtos/**").permitAll()
 			.anyRequest()
 				.authenticated()
 			.and()

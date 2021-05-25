@@ -34,4 +34,12 @@ public class Caracteristica {
 		this.descricao = descricao;
 		this.produto = produto;
 	}
+	
+	public String getNome() {
+		return this.nome;
+	}
+	
+	public String getDescricao() {
+		return this.descricao;
+	}
 }

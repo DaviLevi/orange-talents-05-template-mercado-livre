@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -77,6 +78,12 @@ public class Produto {
 	@NotNull
 	private Usuario usuario;
 
+	@OneToMany(mappedBy = "produtoOpinado")
+	private Set<Opiniao> opinioes = new HashSet<>();
+	
+	@OneToMany(mappedBy = "produto")
+	private Set<Pergunta> perguntas = new HashSet<>();
+	
 	@Deprecated public Produto() {}
 	
 	public Produto(@NotBlank String nome, @NotBlank @Size(max = 1000) String descricao,
@@ -112,4 +119,43 @@ public class Produto {
 		return this.usuario.getUsername();
 	}
 	
+	public Double calculaMediaNotas(){
+		return this.opinioes.stream().mapToInt(Opiniao::getNota).average().orElse(0);
+	}
+	
+	public String getDescricao() {
+		return this.descricao;
+	}
+	
+	public BigDecimal getPreco() {
+		return this.valor;
+	}
+	
+	public String getNome() {
+		return this.nome;
+	}
+
+	public Map<Integer, Long> calculaQuantidadeOpinioesPorNota() {
+		return this.opinioes.stream().collect(Collectors.groupingBy(Opiniao::getNota, Collectors.counting()));
+	}
+	
+	public Long calculaQuantidadeOpinioes() {
+		return this.opinioes.stream().collect(Collectors.counting());
+	}
+	
+	public Set<FotoProduto> getFotosProduto(){
+		return this.fotosProduto;
+	} 
+	
+	public Set<Caracteristica> getCaracteristicas(){
+		return this.caracteristicas;
+	}
+	
+	public Set<Pergunta> getPerguntas(){
+		return this.perguntas;
+	}
+	
+	public Set<Opiniao> getOpinioes(){
+		return this.opinioes;
+	}
 }

@@ -1,8 +1,8 @@
 package br.com.zup.ot5.fase3.mercadolivre.model;
 
-import br.com.zup.ot5.fase3.mercadolivre.compra_produto.ResolvedorTransacao;
-import br.com.zup.ot5.fase3.mercadolivre.compra_produto.ResolvedorTransacaoPaypal;
-import br.com.zup.ot5.fase3.mercadolivre.compra_produto.ResolvedorTransacaoPagseguro;
+import br.com.zup.ot5.fase3.mercadolivre.compra_produto_parte_1.ResolvedorTransacao;
+import br.com.zup.ot5.fase3.mercadolivre.compra_produto_parte_1.ResolvedorTransacaoPagseguro;
+import br.com.zup.ot5.fase3.mercadolivre.compra_produto_parte_1.ResolvedorTransacaoPaypal;
 
 public enum GatewayPagamento {
 

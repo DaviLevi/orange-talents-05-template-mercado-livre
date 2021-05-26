@@ -1,4 +1,4 @@
-package br.com.zup.ot5.fase3.mercadolivre.compra_produto;
+package br.com.zup.ot5.fase3.mercadolivre.compra_produto_parte_1;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

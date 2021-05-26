@@ -5,7 +5,7 @@ import javax.persistence.PersistenceContext;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-import br.com.zup.ot5.fase3.mercadolivre.compra_produto.CompraProdutoRequest;
+import br.com.zup.ot5.fase3.mercadolivre.compra_produto_parte_1.CompraProdutoRequest;
 import br.com.zup.ot5.fase3.mercadolivre.model.Produto;
 
 public class ExisteEstoqueSuficienteValidator implements ConstraintValidator<ExisteEstoqueSuficiente, CompraProdutoRequest>{

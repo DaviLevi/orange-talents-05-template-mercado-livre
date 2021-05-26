@@ -158,4 +158,13 @@ public class Produto {
 	public Set<Opiniao> getOpinioes(){
 		return this.opinioes;
 	}
+	
+	public boolean possuiEstoquePara(Integer quantidadeRequisitada) {
+		return this.quantidadeDisponivel >= quantidadeRequisitada;
+	}
+	
+	public void abateEstoque(Integer quantidadeCompra) {
+		Assert.state(this.quantidadeDisponivel >= quantidadeCompra, "Está sendo comprada uma quantidade maior que o disponivel do produto!");
+		this.quantidadeDisponivel -= quantidadeCompra;
+	}
 }

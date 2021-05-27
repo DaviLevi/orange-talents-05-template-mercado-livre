@@ -167,4 +167,8 @@ public class Produto {
 		Assert.state(this.quantidadeDisponivel >= quantidadeCompra, "Está sendo comprada uma quantidade maior que o disponivel do produto!");
 		this.quantidadeDisponivel -= quantidadeCompra;
 	}
+	
+	public Long getIdVendedor() {
+		return this.usuario.getId();
+	}
 }

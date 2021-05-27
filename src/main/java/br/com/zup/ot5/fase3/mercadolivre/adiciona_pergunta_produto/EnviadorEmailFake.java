@@ -7,7 +7,7 @@ public class EnviadorEmailFake implements EnviadorEmail{
 
 	@Override
 	public void envia(String conteudo, String email) {
-		System.out.println("Enviando um email para o vendedor " + email + "...");
+		System.out.println("Enviando um email para " + email + "...");
 		System.out.println("Corpo email : " + conteudo);
 		System.out.println("Email enviada com sucesso!");
 	}
